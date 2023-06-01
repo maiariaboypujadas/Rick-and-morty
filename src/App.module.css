@@ -1,0 +1,17 @@
+.App {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    border: solid beige 1px;
+    margin: auto;
+    margin-top: 30px;
+    margin-left: 30px;
+    padding: 11px;
+    text-align: center;
+    background-image: url('https://w0.peakpx.com/wallpaper/989/3/HD-wallpaper-rick-and-morty-and-black-blue-galaxy-green-morty-rick-stars-white.jpg');
+    background-size: cover;
+    width: 100%;
+    background-position: center center;
+}

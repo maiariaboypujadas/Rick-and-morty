@@ -1,38 +1,47 @@
 .App {
-  text-align: center;
+   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.cards {
+   position: relative;
+   width: 300px;
+   height: 350px;
+   margin: 20px;
+   float: left;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.cards .face {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   backface-visibility: hidden;
+   border-radius: 10px;
+   overflow: hidden;
+   transition: .5s;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.cards .front{
+   transform: perspective(600px) rotateY(0deg);
+   box-shadow: 0 5px 10px #fff;
 }
+.cards .front img {
+   width: 298px;
+   height: 290px;
 
-.App-link {
-  color: #61dafb;
+   object-fit: cover;
+   overflow: hidden;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.cards .back {
+   transform: perspective(600px) rotateY(180deg);
+   background: black;
+   padding: 15px;
+   color: #f3f3f3;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   text-align: center;
+   box-shadow: 0.5px 10px #fff;
+}
+.cards:hover .front {
+   transform: perspective(600px) rotateY(180deg);
+}
+.cards:hover .back {
+   transform: perspective(600px) rotateY(360deg);
 }
