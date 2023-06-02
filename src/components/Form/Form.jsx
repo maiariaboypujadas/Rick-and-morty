@@ -1,0 +1,36 @@
+import { useState } from "react";
+import validation from "../validation";
+const Forms = () => {
+    const [userData, setUserData] = useState({
+        email: '',
+        password: ''
+});
+const [errors, setErrors] = useState({});
+const handleChange = (e) => {
+    setErrors(validation({...userData,[e.target.name]: e.target.value}));
+    setUserData({...userData,[e.target.name]: e.target.value })
+}
+    return (
+        <div>
+        <form>
+     <div>
+<label htmlFor="email">Email: </label>
+<input onChange={handleChange} value={userData.email} type="text" name="email"></input>
+    </div>
+    {errors.e1 ? (<p>{errors.e1}</p>)  : errors.e2 ? (
+        <p>{errors.e2}</p>) : (<p>{errors.e3}</p>)
+    }
+    <div>
+<label htmlFor="password">Password: </label>
+<input onChange={handleChange} value={userData.password} type="text" name="password"></input>
+    </div>
+    {errors.p1 ? (<p>{errors.p1}</p>)  :  <p>{errors.p2}</p>
+    }
+    <div>
+<button type="SUBMIT"></button>
+    </div>
+        </form>
+        </div>
+    )
+}
+export default Forms;

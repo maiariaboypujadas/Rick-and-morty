@@ -4,20 +4,15 @@ import style from './App.module.css';
 import NavBar from './components/NavBar/NavBar';
 import { useState } from 'react';
 import axios from 'axios';
-// const example = {
-//   id: 1,
-//   name: 'Rick Sanchez',
-//   status: 'Alive',
-//   species: 'Human',
-//   gender: 'Male',
-//   origin: {
-//      name: 'Earth (C-137)',
-//      url: 'https://rickandmortyapi.com/api/location/1',
-//   },
-//   image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
-// };
+import { Route, Routes, useLocation } from 'react-router-dom';
+import About  from './components/About/About';
+import Detail from './components/Detail/Detail';
+import Forms from './components/Form/Form';
+
+
 function App() {
   const [characters, setCharacters] = useState([]);
+  const {pathname} = useLocation();
 
   function onSearch(id) {
     axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
@@ -38,8 +33,14 @@ function App() {
 
      return (
    <div className={style.App}>
-    <NavBar onSearch={onSearch}/>
-      <Cards characters={characters} onClose={onClose}/>  
+    {pathname !== "/" && <NavBar onSearch={onSearch}/>}
+    <Routes>
+      <Route path='/' element={<Forms/>}></Route>
+      <Route path='/about' element={<About/>}></Route>
+      <Route path='/home' element={
+      <Cards characters={characters} onClose={onClose}/>}/> 
+      <Route path='/detail/:id' element={<Detail/>}/>
+    </Routes>
       </div>
    );
 }
